@@ -1,4 +1,4 @@
-from flask import Flask, Response
+from flask import Flask, request
 from prometheus_flask_exporter import PrometheusMetrics
 
 app = Flask(__name__)
@@ -11,7 +11,9 @@ metrics.info('app_info', 'Application info', version='1.0.0')
 # Custom counter metric
 http_requests_total = metrics.counter(
     'http_requests_total', 'Total number of HTTP requests',
-    ['method', 'endpoint', 'status_code']
+    labels={'method': lambda: request.method,
+            'endpoint': lambda: request.path, 'status_code': lambda r: r.status_code}
+
 )
 
 
@@ -26,14 +28,10 @@ def hello():
 
 
 @app.after_request
+@http_requests_total
 def after_request(response):
-    http_requests_total.labels(
-        method=request.method,
-        endpoint=request.path,
-        status_code=response.status_code
-    ).inc()
     return response
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=8000)

@@ -15,7 +15,7 @@ This is a Python Flask microservice that exposes metrics for Prometheus.
 2. Run `pip install -r requirements.txt` to install dependencies.
 3. Run `python app.py` to start the server.
 
-The server will be available at `http://localhost:5000`.
+The server will be available at `http://localhost:8000`.
 
 ## Endpoints
 

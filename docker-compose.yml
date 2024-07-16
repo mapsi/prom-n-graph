@@ -6,8 +6,17 @@ services:
 
   python-flask:
     build: ./services/python-flask
+    # flask requires SIGINT to stop gracefully
+    # (default stop signal from Compose is SIGTERM)
+    stop_signal: SIGINT
     ports:
-      - 5000:5000
+      - 8000:8000
+
+  traffic-generator:
+    build: ./services/traffic-generator
+    depends_on:
+      - node-express
+      - python-flask
 
   prometheus:
     image: prom/prometheus
