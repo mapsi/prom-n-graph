@@ -4,6 +4,11 @@ services:
     ports:
       - 3000:3000
 
+  python-flask:
+    build: ./services/python-flask
+    ports:
+      - 5000:5000
+
   prometheus:
     image: prom/prometheus
     ports:

@@ -5,3 +5,7 @@ scrape_configs:
   - job_name: "node-express"
     static_configs:
       - targets: ["node-express:3000"]
+
+  - job_name: "python-flask"
+    static_configs:
+      - targets: ["python-flask:5000"]
