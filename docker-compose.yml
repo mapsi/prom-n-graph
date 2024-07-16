@@ -12,11 +12,17 @@ services:
     ports:
       - 8000:8000
 
+  go-fiber:
+    build: ./services/go-fiber
+    ports:
+      - "9000:9000"
+
   traffic-generator:
     build: ./services/traffic-generator
     depends_on:
       - node-express
       - python-flask
+      - go-fiber
 
   prometheus:
     image: prom/prometheus

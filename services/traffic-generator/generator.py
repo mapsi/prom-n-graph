@@ -5,7 +5,8 @@ from concurrent.futures import ThreadPoolExecutor
 
 SERVICES = [
     "http://node-express:3000",
-    "http://python-flask:8000"
+    "http://python-flask:8000",
+    "http://go-fiber:9000"
 ]
 
 
