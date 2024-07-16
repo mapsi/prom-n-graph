@@ -1,0 +1,7 @@
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+  - job_name: "node-express"
+    static_configs:
+      - targets: ["node-express:3000"]

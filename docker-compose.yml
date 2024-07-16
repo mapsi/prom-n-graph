@@ -1,18 +1,18 @@
 services:
-  node-app:
-    build:
-      context: node-app
-      dockerfile: ./Dockerfile
-    environment:
-      NODE_ENV: production
+  node-express:
+    build: ./services/node-express
     ports:
       - 3000:3000
+
   prometheus:
     image: prom/prometheus
     ports:
       - 9090:9090
     volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+
   grafana:
     # default credentials: admin/admin
     image: grafana/grafana
