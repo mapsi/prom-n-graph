@@ -1,8 +1,5 @@
-version: '3.4'
-
 services:
-  app:
-    image: app
+  node-app:
     build:
       context: node-app
       dockerfile: ./Dockerfile
@@ -10,3 +7,19 @@ services:
       NODE_ENV: production
     ports:
       - 3000:3000
+  prometheus:
+    image: prom/prometheus
+    ports:
+      - 9090:9090
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+  grafana:
+    # default credentials: admin/admin
+    image: grafana/grafana
+    ports:
+      - 3001:3000
+    volumes:
+      - ./graphana/datasource.yml:/etc/grafana/provisioning/datasources/datasource.yml
+      - ./graphana/dashboard.json:/etc/grafana/provisioning/dashboards/dashboard.json
+    environment:
+      - GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH=/etc/grafana/provisioning/dashboards/dashboard.json
