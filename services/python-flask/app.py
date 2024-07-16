@@ -16,7 +16,7 @@ http_requests_total = metrics.counter(
 
 @app.route('/')
 def hello():
-    return 'Hello World!'
+    return 'Hello from Python Flask!'
 
 
 @app.route('/metrics')

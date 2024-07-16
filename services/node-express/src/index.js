@@ -32,7 +32,7 @@ app.use((req, res, next) => {
 });
 
 app.get("/", (req, res) => {
-  res.send("Hello World");
+  res.send("Hello from Node.js Express!");
 });
 
 // Expose the metrics endpoint
