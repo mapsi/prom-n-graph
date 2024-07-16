@@ -2,6 +2,7 @@ from flask import Flask, Response
 from prometheus_flask_exporter import PrometheusMetrics
 
 app = Flask(__name__)
+# This will also create the /metrics endpoint
 metrics = PrometheusMetrics(app)
 
 # Enable default metrics
@@ -19,9 +20,9 @@ def hello():
     return 'Hello from Python Flask!'
 
 
-@app.route('/metrics')
-def metrics():
-    return Response(generate_latest(), mimetype=CONTENT_TYPE_LATEST)
+# @app.route('/metrics')
+# def metrics():
+#     return Response(generate_latest(), content_type=metrics.generate_metrics())
 
 
 @app.after_request
