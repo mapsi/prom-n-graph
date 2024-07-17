@@ -23,6 +23,8 @@ services:
       - node-express
       - python-flask
       - go-fiber
+    environment:
+      - SERVICE_URLS=http://node-express:3000,http://python-flask:8000,http://go-fiber:9000
 
   prometheus:
     image: prom/prometheus
