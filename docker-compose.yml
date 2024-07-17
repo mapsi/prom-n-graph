@@ -41,7 +41,7 @@ services:
     ports:
       - 3001:3000
     volumes:
-      - ./graphana/datasource.yml:/etc/grafana/provisioning/datasources/datasource.yml
-      - ./graphana/dashboard.json:/etc/grafana/provisioning/dashboards/dashboard.json
+      - ./grafana/datasource.yml:/etc/grafana/provisioning/datasources/datasource.yml
+      - ./grafana/dashboard.json:/etc/grafana/provisioning/dashboards/dashboard.json
     environment:
       - GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH=/etc/grafana/provisioning/dashboards/dashboard.json
